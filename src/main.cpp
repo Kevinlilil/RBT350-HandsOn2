@@ -14,7 +14,9 @@ float pd_control(float pos,
                  float Kp,
                  float Kd)
 {
-  return 0.0; // YOUR CODE HERE
+  // e(t) = target_position - current_position
+  // de(t)/dt = current_velocity
+  return Kp * (target - pos) - Kd * vel;
 }
 
 /* Sanitize current command to make it safer.
@@ -74,8 +76,8 @@ void loop()
     float m0_current = 0.0;
 
     // Your PD controller is run here.
-    float Kp = 1000.0;
-    float Kd = 0;
+    float Kp = 750.0;
+    float Kd = 40.0;
     float target_position = 0.0; // modify in step 8
     m0_current = pd_control(m0_pos, m0_vel, target_position, Kp, Kd);
 
